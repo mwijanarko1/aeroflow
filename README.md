@@ -1,6 +1,6 @@
-# XFOIL.ai - Web-based Airfoil Analysis Tool
+# AeroFlow - Web-based Airfoil Analysis Tool
 
-XFOIL.ai is a web-based tool for generating and analyzing airfoil geometries using the XFOIL aerodynamic analysis code.
+AeroFlow is a web-based tool for generating and analyzing airfoil geometries using the XFOIL aerodynamic analysis code.
 
 ## NACA 4-Digit Airfoil Series
 
