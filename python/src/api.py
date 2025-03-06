@@ -7,10 +7,17 @@ import math
 
 app = FastAPI()
 
-# Configure CORS
+# Configure CORS with proper origins
+origins = [
+    "http://localhost:3000",     # Next.js development server
+    "http://localhost",          # Local deployment
+    "http://127.0.0.1:3000",    # Alternative local address
+    "http://127.0.0.1",         # Alternative local address
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # In production, replace with your frontend domain
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
