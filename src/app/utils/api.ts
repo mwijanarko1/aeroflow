@@ -9,17 +9,13 @@ import {
 
 // Determine the API base URL based on the environment
 const getApiBaseUrl = () => {
-    if (typeof window === 'undefined') {
-        return 'http://localhost:8000';
-    }
-    
     // For development
     if (process.env.NODE_ENV === 'development') {
         return 'http://localhost:8000';
     }
     
-    // For production
-    return process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+    // For production - use the deployed API URL
+    return 'https://aeroflow-api.vercel.app';
 };
 
 const API_BASE_URL = getApiBaseUrl();
