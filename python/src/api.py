@@ -12,8 +12,7 @@ app = FastAPI()
 ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://localhost:8000",
-    "https://aeroflow-nu.vercel.app",
-    "https://aeroflow-api.vercel.app"
+    "https://aeroflow-nu.vercel.app"
 ]
 
 app.add_middleware(
