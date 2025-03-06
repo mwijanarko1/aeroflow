@@ -13,6 +13,8 @@ origins = [
     "http://localhost",          # Local deployment
     "http://127.0.0.1:3000",    # Alternative local address
     "http://127.0.0.1",         # Alternative local address
+    "https://aeroflow-nu.vercel.app",  # Vercel deployment
+    "http://aeroflow-nu.vercel.app",   # Vercel deployment (HTTP)
 ]
 
 app.add_middleware(

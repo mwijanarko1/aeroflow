@@ -22,8 +22,8 @@ const getApiBaseUrl = () => {
         return 'http://localhost:8000';
     }
 
-    // For all other cases, use the same hostname with port 8000
-    return `http://${hostname}:8000`;
+    // For production (Vercel deployment)
+    return 'https://aeroflow-api.vercel.app';
 };
 
 const API_BASE_URL = getApiBaseUrl();
