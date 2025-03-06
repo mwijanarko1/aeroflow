@@ -14,8 +14,8 @@ const getApiBaseUrl = () => {
         return 'http://localhost:8000';
     }
     
-    // For production - use the deployed API URL
-    return 'https://aeroflow-api.vercel.app';
+    // For production - use the same Vercel domain with /api route
+    return 'https://aeroflow-nu.vercel.app/api';
 };
 
 const API_BASE_URL = getApiBaseUrl();
