@@ -9,21 +9,17 @@ import {
 
 // Determine the API base URL based on the environment
 const getApiBaseUrl = () => {
-    // Check if we're running in a browser environment
     if (typeof window === 'undefined') {
         return 'http://localhost:8000';
     }
-
-    // Get the current hostname
-    const hostname = window.location.hostname;
-
-    // If we're on localhost, use port 8000
-    if (hostname === 'localhost' || hostname === '127.0.0.1') {
+    
+    // For development
+    if (process.env.NODE_ENV === 'development') {
         return 'http://localhost:8000';
     }
-
-    // For production (Vercel deployment)
-    return 'https://aeroflow-api.vercel.app';
+    
+    // For production
+    return process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 };
 
 const API_BASE_URL = getApiBaseUrl();
@@ -36,20 +32,17 @@ export async function analyzeAirfoil(request: AnalysisRequest): Promise<Analysis
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(request),
-            credentials: 'include', // Include credentials if needed
+            mode: 'cors', // Explicitly set CORS mode
         });
 
         if (!response.ok) {
-            const error = await response.json();
-            throw new Error(error.detail || 'Failed to analyze airfoil');
+            const errorText = await response.text();
+            throw new Error(`Failed to analyze airfoil: ${errorText}`);
         }
 
         return response.json();
     } catch (error) {
         console.error('Error analyzing airfoil:', error);
-        if (error instanceof Error && error.message.includes('CORS')) {
-            throw new Error('Unable to connect to analysis server. Please ensure the server is running and accessible.');
-        }
         throw error;
     }
 }
@@ -62,20 +55,17 @@ export async function generatePolar(request: PolarRequest): Promise<PolarRespons
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(request),
-            credentials: 'include', // Include credentials if needed
+            mode: 'cors', // Explicitly set CORS mode
         });
 
         if (!response.ok) {
-            const error = await response.json();
-            throw new Error(error.detail || 'Failed to generate polar');
+            const errorText = await response.text();
+            throw new Error(`Failed to generate polar: ${errorText}`);
         }
 
         return response.json();
     } catch (error) {
         console.error('Error generating polar:', error);
-        if (error instanceof Error && error.message.includes('CORS')) {
-            throw new Error('Unable to connect to analysis server. Please ensure the server is running and accessible.');
-        }
         throw error;
     }
 } 

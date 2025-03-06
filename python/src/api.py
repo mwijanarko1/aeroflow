@@ -4,29 +4,18 @@ from pydantic import BaseModel
 from typing import List, Optional
 import numpy as np
 import math
+import os
 
 app = FastAPI()
 
-# Configure CORS with proper origins
-origins = [
-    "http://localhost:3000",     # Next.js development server
-    "http://localhost",          # Local deployment
-    "http://127.0.0.1:3000",    # Alternative local address
-    "http://127.0.0.1",         # Alternative local address
-    "https://aeroflow-nu.vercel.app",  # Vercel deployment
-    "http://aeroflow-nu.vercel.app",   # Vercel deployment (HTTP)
-]
-
+# Configure CORS - Allow all origins during development
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_origins=["*"],  # Allow all origins
+    allow_credentials=False,  # Must be False when allow_origins=["*"]
+    allow_methods=["*"],  # Allow all methods
+    allow_headers=["*"],  # Allow all headers
 )
-
-class AirfoilCoordinates(BaseModel):
-    coordinates: List[List[float]]
 
 class AnalysisRequest(BaseModel):
     coordinates: List[List[float]]
