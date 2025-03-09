@@ -7,12 +7,9 @@ import {
     PolarResponse,
 } from '../types/xfoil';
 
-// API endpoints are now relative to the current domain
-const API_BASE = '/api';
-
 export async function analyzeAirfoil(request: AnalysisRequest): Promise<AnalysisResponse> {
     try {
-        const response = await fetch(`${API_BASE}/analyze`, {
+        const response = await fetch('/api/analyze', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -34,7 +31,7 @@ export async function analyzeAirfoil(request: AnalysisRequest): Promise<Analysis
 
 export async function generatePolar(request: PolarRequest): Promise<PolarResponse> {
     try {
-        const response = await fetch(`${API_BASE}/polar`, {
+        const response = await fetch('/api/polar', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

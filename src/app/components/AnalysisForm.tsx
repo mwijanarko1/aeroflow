@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { AnalysisRequest, AnalysisResponse, Coordinates } from '../types/xfoil';
 import { analyzeAirfoil } from '../utils/api';
 import AnalysisResults from './AnalysisResults';
-import PressureDistribution from './PressureDistribution';
 
 interface Props {
     coordinates: Coordinates;
@@ -140,25 +139,11 @@ export default function AnalysisForm({ coordinates }: Props) {
             </form>
 
             {results && (
-                <div className="space-y-6">
-                    <AnalysisResults 
-                        results={results} 
-                        coordinates={coordinates}
-                        analysisParams={formData}
-                    />
-                    
-                    <div className="mt-6">
-                        <h3 className="text-lg font-medium text-gray-900 mb-4">
-                            Pressure Distribution
-                        </h3>
-                        <PressureDistribution 
-                            coordinates={coordinates}
-                            alpha={formData.alpha}
-                            reynolds={formData.reynolds}
-                            mach={formData.mach}
-                        />
-                    </div>
-                </div>
+                <AnalysisResults 
+                    results={results} 
+                    coordinates={coordinates}
+                    analysisParams={formData}
+                />
             )}
         </div>
     );
